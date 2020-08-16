@@ -13,7 +13,7 @@ nr_if=($($IP l | grep -o -e ' eth[0-9]\{1,\}:' | sed -e "s@:@@g"))
 # try to rename
 for i in ${nr_if[@]}
 do
-    export DEVPATH=$(readlink $NET_CLASS_DIR/$i)
+    export DEVPATH=$(readlink -f $NET_CLASS_DIR/$i)
     export DEVNAME=$i
     NNAME=$(env "$LIB")
     $LOGGER "$LIB: finished. New device name is $NNAME."

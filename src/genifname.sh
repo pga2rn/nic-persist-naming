@@ -35,7 +35,7 @@ f=$( printf "%d" \
 p1pci_slot=$(echo $pci_slot | sed -e 's@\.[0-9a-fA-F]\{1,\}@\.1@')
 p1dev_path=$(echo $DEVPATH | sed -e "s@$pci_slot@\|@" | cut -d'|' -f1)$p1pci_slot
 # if the dev_path for nic port 1 exists, we treat this nic as an multi ports nic.
-[ -d "/sys$p1dev_path" ] && mp=1
+[ -n "$p1dev_path" -a -d "/sys$p1dev_path" ] && mp=1
 
 # get dev_port
 d=$(cat $NET_CLASS_DIR/$DEVNAME/dev_port)
