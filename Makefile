@@ -2,7 +2,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nic-persist-naming
-PKG_VERSION:=2020-04-27
+PKG_VERSION:=2020-08-17
 PKG_RELEASE=1.0
 
 include $(INCLUDE_DIR)/package.mk
