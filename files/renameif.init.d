@@ -1,7 +1,7 @@
 #!/bin/sh /etc/rc.common
 USE_PROCD=1
 # execute this scripts before any network related programs init.
-# right in front of dnsmasq start
+# placed in front of dnsmasq in startup sequence.
 START=18
 #PROCD_DEBUG=1
 

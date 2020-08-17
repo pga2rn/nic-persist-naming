@@ -3,12 +3,13 @@
 # needed env vars
 # DEVPATH, DEVNAME
 
-# predictable interfacing naming on openwrt using hotplug
-# using net hook
+# predictable interfacing naming on openwrt using hotplug using net hook
+# following naming guide-line from systemd: 
+#       https://www.freedesktop.org/software/systemd/man/systemd.net-naming-scheme.html
 # example:
 # /devices/pci0000:00/0000:00:0a.2/net/eth3 (with dev_port 2)
 # enp0s10f2d2
-# meanwhile, function 0 of this multiport nic should be: enp0s10f0
+# meanwhile, function 0 of this multiport nic should be: enp0s10f0 (d0 is omitted)
 
 # sys_class_net
 NET_CLASS_DIR="/sys/class/net"
@@ -30,8 +31,8 @@ f=$( printf "%d" \
     "0x$(echo $sf | cut -d'.' -f2)"
     )
 
-# check if the nic has multiple ports
-# generate DEVPATH for port 1, and check whether it exists or not
+# check if the nic has multiple ports, 
+# generate DEVPATH for port 1, and check whether it exists or not.
 p1pci_slot=$(echo $pci_slot | sed -e 's@\.[0-9a-fA-F]\{1,\}@\.1@')
 p1dev_path=$(echo $DEVPATH | sed -e "s@$pci_slot@\|@" | cut -d'|' -f1)$p1pci_slot
 # if the dev_path for nic port 1 exists, we treat this nic as an multi ports nic.
