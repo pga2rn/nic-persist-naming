@@ -1,6 +1,8 @@
 # NIC-persist-naming
 
-NIC persist-naming for Openwrt based on netifd and hotplug.
+NIC persist-naming for OpenWrt based on netifd and hotplug. 
+
+**ONLY PCI NIC WILL BE RENAMED**, currently only being tested on KVM based OpenWrt VM.
 
 Following naming scheme from systemd:
 	https://www.freedesktop.org/software/systemd/man/systemd.net-naming-scheme.html
