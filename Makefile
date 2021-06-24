@@ -3,13 +3,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nic-persist-naming
 PKG_VERSION:=2021-01-25
-PKG_RELEASE=1.3
+PKG_RELEASE=1.4
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/nic-persist-naming
   TITLE:=nic-persist-naming
-  DEPENDS+= +ip
 endef
 
 define Build/Prepare
