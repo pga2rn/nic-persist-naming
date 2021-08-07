@@ -19,7 +19,7 @@ NET_PREFIX="en"
 HEX="[0-9a-fA-F]"
 
 # get pci slot
-pci_slot=$(echo $DEVPATH | grep -o "$HEX\{4\}:$HEX\{2,\}:$HEX\{2,\}.$HEX\+")
+pci_slot=$(echo $DEVPATH | grep -o "$HEX\{4\}:$HEX\{2,\}:$HEX\{2,\}.$HEX\+" | tail -n 1)
 # pslot: 0000:xx:xx.x
 p=$(printf "%d" "0x$(echo $pci_slot | cut -d':' -f2)")
 # slot and function
