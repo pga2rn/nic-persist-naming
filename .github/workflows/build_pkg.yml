@@ -1,15 +1,40 @@
+# build package for x86-64 target
 name: build pkg CI
 
 on: [workflow_dispatch]
-  
+
+env:
+  OPENWRT_DOWNLOAD_URL: https://downloads.openwrt.org/releases
+  OPENWRT_SDK_URL: "${{ OPENWRT_DOWNLOAD_URL }}/21.02.0-rc4/targets/x86/64/openwrt-sdk-21.02.0-rc4-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz"
+
 jobs:
   build_pkg:
     runs-on: ubuntu-latest
-    strategy:
-      matrix: 
-        openwrt_sdk_version: [21.02.0-rc4]
     steps:
       - name: Check out nic-persist-naming repo
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
           path: ./nic-persist-naming
+      - name: Prepare openwrt SDK
+        run:
+          curl "${SDK_DOWNLOAD_URL}" --output sdk.tar.gz
+          tar xzf sdk.tar.gz
+          cp -a ./nic-persist-naming ./sdk/package
+      - name: Build Package
+        working-directory: ./sdk
+        run: |
+          ./scripts/feeds update -a
+          make package/nic-persist-naming/prepare
+          make package/nic-persist-naming/compile
+      # TODO: set the built ipk to github as release
+      - name: Test package
+        working-directory: ./sdk
+        env:
+          BUILD_BIN_PATH: "bin/packages/x86_64/base"
+        run: |
+          ls -lah "${BUILD_BIN_PATH}"
+      
+
+
+
+
