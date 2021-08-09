@@ -16,8 +16,8 @@ jobs:
         with:
           path: ./nic-persist-naming
       - name: Prepare openwrt SDK
-        run:
-          curl "${SDK_DOWNLOAD_URL}" --output sdk.tar.gz
+        run: |
+          curl "${OPENWRT_SDK_URL}" --output sdk.tar.gz
           tar xzf sdk.tar.gz
           cp -a ./nic-persist-naming ./sdk/package
       - name: Build Package
