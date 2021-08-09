@@ -4,8 +4,8 @@ name: build pkg CI
 on: [workflow_dispatch]
 
 env:
-  OPENWRT_DOWNLOAD_URL: https://downloads.openwrt.org/releases
-  OPENWRT_SDK_URL: "${{ env.OPENWRT_DOWNLOAD_URL }}/21.02.0-rc4/targets/x86/64/openwrt-sdk-21.02.0-rc4-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz"
+  OPENWRT_DOWNLOAD_URL: "https://downloads.openwrt.org/releases"
+  OPENWRT_SDK_URL: "https://downloads.openwrt.org/releases/21.02.0-rc4/targets/x86/64/openwrt-sdk-21.02.0-rc4-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz"
 
 jobs:
   build_pkg:
